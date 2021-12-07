@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-   
+import os
+from django.urls import reverse_lazy  
 
    
 from pathlib import Path
@@ -28,6 +29,10 @@ SECRET_KEY = 'django-insecure-4dw0&77n-7&^un(zigyi9$=&u194!skl)fuw*($8fu2s&8xo7x
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_URL = reverse_lazy("login")
+LOGIN_REDIRECT_URL = reverse_lazy("inicio")
+
+AUTH_USER_MODEL = "usuarios.Usuario"
 
 
 # Application definition
@@ -39,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.productos',
+    'apps.usuarios',
+
 ]
 
 MIDDLEWARE = [
@@ -53,10 +61,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'proyectofinalsustentable.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ar'
 
 TIME_ZONE = 'UTC'
 
@@ -120,6 +129,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

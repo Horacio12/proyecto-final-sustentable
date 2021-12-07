@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+
+{% block contenido %}
+	<div class="row" style="padding:10px;">
+		<div class="col">
+			<a href="{% url 'productos:admin_nuevo' %}" class="btn btn-success">Nuevo</a>
+		</div>
+	</div>
+	
+
+	<table class="table table-success table-striped">
+		<thead>
+			<th scope="col">Id</th>
+			<th scope="col">Nombre</th>
+			<th>Precio</th>
+			<th scope="col">Acciones</th>
+		</thead>
+		<tbody>
+			{% for p in productos %}
+				<tr>
+			      <th scope="row">{{p.id}}</th>
+			      <td>{{p.nombre}}</td>
+			      <td>$ {{p.precio}}</td>
+			      <td>
+			      	<a href="">Ver</a>
+			      	<a href="{% url 'productos:admin_editar' p.id %}">Editar</a>
+			      	<a href="">Eliminar</a>
+			      </td>
+			    </tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock contenido %}

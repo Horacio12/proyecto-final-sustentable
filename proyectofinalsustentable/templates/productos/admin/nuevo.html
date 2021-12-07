@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+
+{% block contenido %}
+	<form method="POST">{% csrf_token %}
+		{% include "includes/form_errors.html" %}
+		
+		{{form.as_p}}
+
+		<div class="row">
+			<div class="col">
+				<button type="submit" class="btn btn-success">Guardar</button>
+				<a href="{% url 'productos:admin_listar' %}" class="btn btn-danger">Cancelar</a>
+			</div>
+		</div>
+	</form>
+{% endblock contenido %}
